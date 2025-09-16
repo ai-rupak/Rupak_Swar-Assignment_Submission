@@ -144,17 +144,17 @@ const Analytics = () => {
           </div>
           <div className="flex justify-center md:justify-end items-center gap-4">
            
-            <button className={`${localStorage.getItem("role") !== "manager" && "hidden"} px-5 py-2 bg-black text-white text-sm font-medium rounded-lg shadow hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2  transition duration-300`}>
+            <button className={`${localStorage.getItem("role") !== "manager" && "hidden"} px-5 py-2  text-black text-sm font-medium rounded-lg shadow  focus:outline-none focus:ring-2 focus:ring-offset-2  transition duration-300`}>
               Manager</button>
             <Link to="/dashboard">
-              <button className="px-5 py-2 bg-indigo-600 text-white font-medium rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300">
+              <button className="px-4 py-2 bg-black text-white font-medium rounded-lg text-sm shadow  focus:outline-none focus:ring-2 focus:ring-offset-2 hover:scale-105  transition duration-300">
                  Dashboard
               </button>
             </Link>
 
             <button
               onClick={logout}
-              className="px-5 py-2 bg-indigo-600 text-white font-medium rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300"
+              className="px-4 py-2 bg-black text-white font-medium rounded-lg text-sm shadow  focus:outline-none focus:ring-2 focus:ring-offset-2 hover:scale-105  transition duration-300"
             >
               Logout
             </button>
