@@ -18,6 +18,9 @@ app.use(
     //origin: "http://localhost:5173",
     origin: "https://rupak-swar-assignment-submission-df.vercel.app",
     methods: ["GET", "POST", "PUT", "PATCH", "UPDATE", "DELETE"], // only allow these
+    allowedHeaders: [
+    "Content-Type",
+    "Authorization",],
     credentials: true,
   })
 );
