@@ -6,12 +6,13 @@ import invoiceRouter from "./routes/invoiceRoute.js";
 import cors from "cors";
 import dotenv from "dotenv";
 
-connectDB();
 
 const app = express();
+dotenv.config();
+
+connectDB();
 app.use(express.json());
 // dot env config
-dotenv.config();
 
 app.use(
   cors({
@@ -27,8 +28,9 @@ app.use(
       "X-Requested-With",
       "Accept",
       "Origin",
-      "Access-Control-Allow-Origin"
-      
+      "Access-Control-Allow-Origin",
+      "token"
+
 
     ],
     credentials: true
