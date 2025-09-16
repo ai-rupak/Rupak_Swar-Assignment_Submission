@@ -1,25 +1,8 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
+
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-} from "recharts";
-import {
-  Upload,
   FileText,
-  TrendingUp,
-  AlertTriangle,
-  CheckCircle,
-  XCircle,
-  LogOut,
+
 } from "lucide-react";
 import axios from "axios";
 import FileUpload from "../components/FileUpload";
@@ -43,7 +26,7 @@ const Analytics = () => {
       formData.append("file", file);
 
       const res = await axios.post(
-        "http://localhost:5000/api/invoices/upload",
+        `${import.meta.env.VITE_BACKEND_URL}invoices/upload`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -65,7 +48,7 @@ const Analytics = () => {
   const fetchInvoices = async () => {
     try {
       // Replace this mock call with your actual axios call:
-      const res = await axios.get("http://localhost:5000/api/invoices/invoice",{
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}invoices/invoice`,{
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       // const res = await apiService.fetchInvoices();
@@ -79,7 +62,7 @@ const Analytics = () => {
     try {
       // Replace this mock call with your actual axios call:
       const res = await axios.get(
-        "http://localhost:5000/api/invoices/dashboard",
+        `${import.meta.env.VITE_BACKEND_URL}invoices/dashboard`,
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
       
@@ -94,7 +77,7 @@ const Analytics = () => {
     try {
       // Replace this mock call with your actual axios call:
       const updateResponse = await axios.put(
-        `http://localhost:5000/api/invoices/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}invoices/${id}`,
         { status },
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );

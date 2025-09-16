@@ -13,7 +13,7 @@ const AuthPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) {
-      alert('Please fill in all fields');
+      toast.error('Please fill in all fields');
       return;
     }
     if(isLogin){

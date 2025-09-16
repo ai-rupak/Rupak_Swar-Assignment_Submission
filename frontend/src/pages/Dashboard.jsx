@@ -11,7 +11,7 @@ const Dashboard = () => {
       try {
         // Replace this mock call with your actual axios call:
         const res = await axios.get(
-          "http://localhost:5000/api/invoices/invoice",
+          `${import.meta.env.VITE_BACKEND_URL}invoices/invoice`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
