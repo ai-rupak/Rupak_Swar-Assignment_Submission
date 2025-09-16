@@ -64,7 +64,7 @@ const Dashboard = () => {
           <div className="flex justify-center md:justify-end items-center gap-4">
            
             
-            <button onClick={logout} className="px-5 py-2 bg-indigo-600 text-white font-medium rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300">
+            <button onClick={logout} className="px-5 py-2 bg-black text-white font-medium rounded-lg text-sm shadow  focus:outline-none focus:ring-2 focus:ring-offset-2 hover:scale-105  transition duration-300">
               Logout
             </button>
             
