@@ -138,15 +138,3 @@ A sample `invoices.csv` is included in the project root. You can upload it from 
 Contributions, issues, and feature requests are welcome!
 Feel free to fork this repo and submit a PR.
 
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**.
-
-```
-
----
-
-Would you like me to also **add screenshots placeholders** (like `![Dashboard Screenshot](docs/dashboard.png)`) so your README looks more visual on GitHub?
-```
