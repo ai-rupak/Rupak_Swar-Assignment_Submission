@@ -76,7 +76,7 @@ ai-rupak-rupak\_swar-assignment\_submission/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/smart-vendor-payment-simulator.git
+git clone https://github.com/ai-rupak/Rupak_Swar-Assignment_Submission.git
 cd smart-vendor-payment-simulator
 ````
 
