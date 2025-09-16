@@ -16,20 +16,25 @@ const AuthPage = () => {
       toast.error('Please fill in all fields');
       return;
     }
-    if(isLogin){
-      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}users/login`, { email, password });
-      toast.success(res.data.message);
+    try {
       
-      if(res.data.success){
-        localStorage.setItem('token', res.data.token);
-        navigate('/analytics');
+      if(isLogin){
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}users/login`, { email, password });
+        toast.success(res.data.message);
+        
+        if(res.data.success){
+          localStorage.setItem('token', res.data.token);
+          navigate('/analytics');
+        }
+      }else{
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}users/register`, {name, email, password });
+        toast(res.data.message);
+        if(res.data.success){
+          setIsLogin(true);
+        }
       }
-    }else{
-      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}users/register`, {name, email, password });
-      toast(res.data.message);
-      if(res.data.success){
-        setIsLogin(true);
-      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Something went wrong');
     }
   
   };
