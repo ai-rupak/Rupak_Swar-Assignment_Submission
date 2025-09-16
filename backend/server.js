@@ -15,7 +15,8 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    //origin: "http://localhost:5173",
+    origin: "https://rupak-swar-assignment-submission-df.vercel.app",
     methods: ["GET", "POST", "PUT", "PATCH", "UPDATE", "DELETE"], // only allow these
     credentials: true,
   })
