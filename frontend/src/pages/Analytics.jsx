@@ -144,7 +144,7 @@ const Analytics = () => {
           </div>
           <div className="flex justify-center md:justify-end items-center gap-4">
            
-            <button className={`${localStorage.getItem("role") !== "manager" && "hidden"} px-3 py-1 bg-black text-white text-sm font-medium rounded-full shadow hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2  transition duration-300`}>
+            <button className={`${localStorage.getItem("role") !== "manager" && "hidden"} px-5 py-2 bg-black text-white text-sm font-medium rounded-lg shadow hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2  transition duration-300`}>
               Manager</button>
             <Link to="/dashboard">
               <button className="px-5 py-2 bg-indigo-600 text-white font-medium rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300">
