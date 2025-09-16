@@ -1,6 +1,6 @@
 
 
-```markdown
+
 # 💳 Smart Vendor Payment Automation Simulator
 
 A full-stack MERN application that simulates **automated vendor payment workflows** with features like invoice processing, duplicate detection, early-payment savings insights, and analytics dashboards.
