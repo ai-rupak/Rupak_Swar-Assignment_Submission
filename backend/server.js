@@ -25,7 +25,11 @@ app.use(
       "Content-Type",
       "Authorization",
       "X-Requested-With",
-      "Accept"
+      "Accept",
+      "Origin",
+      "Access-Control-Allow-Origin"
+      
+
     ],
     credentials: true
   })
