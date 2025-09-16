@@ -1,9 +1,6 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-import {
-  FileText,
-
-} from "lucide-react";
+import { FileText } from "lucide-react";
 import axios from "axios";
 import FileUpload from "../components/FileUpload";
 import StatsCards from "../components/StatsCards";
@@ -17,6 +14,7 @@ const Analytics = () => {
   const [invoices, setInvoices] = useState([]);
   const [stats, setStats] = useState({ total: 0, duplicates: 0, savings: 0 });
   const [isUploading, setIsUploading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // API Functions
   const handleFileUpload = async (file) => {
@@ -30,14 +28,13 @@ const Analytics = () => {
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
       //   const res = await apiService.uploadFile(file);
 
       toast.success(res.data.message);
       await Promise.all([fetchInvoices(), fetchStats()]);
-      
     } catch (error) {
       toast.error("Upload failed: " + error.message);
     } finally {
@@ -47,25 +44,32 @@ const Analytics = () => {
 
   const fetchInvoices = async () => {
     try {
-      // Replace this mock call with your actual axios call:
-      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}invoices/invoice`,{
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-      });
+      setLoading(true);
+
+      const res = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}invoices/invoice`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
       // const res = await apiService.fetchInvoices();
       setInvoices(res.data.invoices || []);
     } catch (error) {
       console.error("Error fetching invoices:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const fetchStats = async () => {
     try {
-      // Replace this mock call with your actual axios call:
       const res = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}invoices/dashboard`,
-        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
       );
-      
+
       setStats(res.data);
     } catch (error) {
       toast.error("Error fetching stats: " + error.message);
@@ -75,17 +79,21 @@ const Analytics = () => {
 
   const updateStatus = async (id, status) => {
     try {
-      // Replace this mock call with your actual axios call:
+      setLoading(true);
       const updateResponse = await axios.put(
         `${import.meta.env.VITE_BACKEND_URL}invoices/${id}`,
         { status },
-        { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
       );
-     
+
       toast.success(updateResponse.data.message);
       await fetchInvoices();
     } catch (error) {
       toast.error("Update failed: " + error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -94,15 +102,25 @@ const Analytics = () => {
     fetchStats();
   }, []);
 
-  const logout = ()=>{
-    localStorage.removeItem('token');
-    window.location.href="/";
-    toast.success('Logged out successfully');
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+    toast.success("Logged out successfully");
+  };
+
+  if (!localStorage.getItem("token")) {
+    return (window.location.href = "/login");
   }
 
-  if(!localStorage.getItem('token')){
+  if (loading) {
     return (
-      window.location.href="/login"
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div
+          className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"
+          role="status"
+          aria-label="Loading"
+        ></div>
+      </div>
     );
   }
 
@@ -122,15 +140,17 @@ const Analytics = () => {
           </div>
           <div className="flex justify-center md:justify-end items-center gap-4">
             <Link to="/dashboard">
-            <button className="px-5 py-2 bg-indigo-600 text-white font-medium rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300">
-              Analytics Dashboard
-            </button>
+              <button className="px-5 py-2 bg-indigo-600 text-white font-medium rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300">
+                Analytics Dashboard
+              </button>
             </Link>
-            
-            <button onClick={logout} className="px-5 py-2 bg-indigo-600 text-white font-medium rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300">
+
+            <button
+              onClick={logout}
+              className="px-5 py-2 bg-indigo-600 text-white font-medium rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300"
+            >
               Logout
             </button>
-            
           </div>
         </div>
 

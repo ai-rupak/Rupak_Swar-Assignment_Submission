@@ -81,10 +81,11 @@ const AuthPage = () => {
           <button
             type="submit"
             disabled={submitting}
-            className={`relative px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg shadow w-full transition duration-300${submitting
-        ? "opacity-50 cursor-not-allowed"
-        : "hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-    }`}
+            className={`relative px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg shadow w-full transition duration-300${
+              submitting
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            }`}
           >
             {submitting ? (
               <div className="flex items-center justify-center gap-2">

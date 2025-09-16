@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ChartsSection from "../components/ChartsSection";
 import axios from "axios";
 import { FileText } from "lucide-react";
 import { toast } from "sonner";
 
 const Dashboard = () => {
-  const [invoices, setInvoices] = React.useState([]);
+  const [invoices, setInvoices] = useState([]);
+  const [loading,setLoading]= useState(false);
   useEffect(() => {
     const fetchInvoices = async () => {
       try {
-        // Replace this mock call with your actual axios call:
+       setLoading(true);
         const res = await axios.get(
           `${import.meta.env.VITE_BACKEND_URL}invoices/invoice`,
           {
@@ -22,6 +23,8 @@ const Dashboard = () => {
         setInvoices(res.data.invoices || []);
       } catch (error) {
         console.error("Error fetching invoices:", error);
+      }finally{
+        setLoading(false);
       }
     };
     fetchInvoices();
@@ -36,6 +39,14 @@ const Dashboard = () => {
   if (!localStorage.getItem("token")) {
     return (window.location.href = "/login");
   }
+  if (loading) {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" role="status" aria-label="Loading"></div>
+    </div>
+  );
+}
+
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
