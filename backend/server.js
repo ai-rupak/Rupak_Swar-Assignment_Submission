@@ -19,17 +19,21 @@ app.use(
     origin: "https://rupak-swar-assignment-submission-df.vercel.app",
     methods: ["GET", "POST", "PUT", "PATCH", "UPDATE", "DELETE"], // only allow these
     allowedHeaders: [
-    "Content-Type",
-    "Authorization",],
+      "Content-Type",
+      "Authorization",
+      "X-Requested-With",
+      "Accept",
+      "token",
+    ],
     credentials: true,
   })
 );
 
-app.use("/api/users",userRouter);
-app.use("/api/invoices",invoiceRouter);
+app.use("/api/users", userRouter);
+app.use("/api/invoices", invoiceRouter);
 
 app.get("/", (req, res) => {
-    res.send("API is running...");
+  res.send("API is running...");
 });
 
 //   ======= Uncomment this to run server locally =======
