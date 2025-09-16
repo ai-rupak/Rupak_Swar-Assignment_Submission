@@ -38,8 +38,8 @@ A full-stack MERN application that simulates **automated vendor payment workflow
 - CORS enabled
 
 ### **Deployment**
-- Frontend: Vercel  
-- Backend: Vercel Serverless Functions
+- Frontend: Vercel  [link](https://rupak-swar-assignment-submission-df.vercel.app/)
+- Backend: Vercel Serverless Functions [link](https://rupak-swar-assignment-submission.vercel.app/)
 
 ---
 
