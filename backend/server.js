@@ -13,9 +13,27 @@ app.use(express.json());
 // dot env config
 dotenv.config();
 
-app.options("*", cors());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://rupak-swar-assignment-submission-df.vercel.app",
+      "https://rupak-swar-assignment-submission.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "X-Requested-With",
+      "Accept",
+      "Origin",
+      "Access-Control-Allow-Origin"
+      
 
+    ],
+    credentials: true
+  })
+);
 app.use("/api/users", userRouter);
 app.use("/api/invoices", invoiceRouter);
 
