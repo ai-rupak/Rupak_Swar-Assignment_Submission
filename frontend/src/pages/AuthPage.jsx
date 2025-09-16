@@ -17,7 +17,7 @@ const AuthPage = () => {
       return;
     }
     if(isLogin){
-      const res = await axios.post(`http://localhost:5000/api/users/login`, { email, password });
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}users/login`, { email, password });
       toast.success(res.data.message);
       
       if(res.data.success){
@@ -25,7 +25,7 @@ const AuthPage = () => {
         navigate('/analytics');
       }
     }else{
-      const res = await axios.post(`http://localhost:5000/api/users/register`, {name, email, password });
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}users/register`, {name, email, password });
       toast(res.data.message);
       if(res.data.success){
         setIsLogin(true);
