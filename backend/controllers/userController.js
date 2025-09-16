@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 
 const registerUser = async(req ,res)=>{
     try {
-        const {name,email,password} = req.body;
+        const {name,email,password,role} = req.body;
         if(!name || !password || !email){
             return res.json({success:false,message:"Missing Details"})
         }
@@ -33,15 +33,16 @@ const registerUser = async(req ,res)=>{
         const userData = {
             name,
             email,
-            password:hashedPassword
+            password:hashedPassword,
+            role
         }
         const newUser = new userModel(userData);
         const user = await newUser.save();        
         if(!newUser){
             return res.json({success:false,message:"Error creating user"});
         }
-        const token = await jwt.sign({id:user._id},process.env.JWT_SECRET, { expiresIn: '1d' })
-        res.status(201).json({success:true,message:"User registered successfully",token});
+        const token = await jwt.sign({id:user._id,role:user.role},process.env.JWT_SECRET, { expiresIn: '1d' })
+        res.status(201).json({success:true,message:"User registered successfully",token,role:user.role});
     } catch(error){
         console.log(error);
         res.json({success:false,message:error.message});
@@ -62,10 +63,10 @@ const loginUser = async(req ,res)=>{
         }
         const isValidPassword = await bcrypt.compare(password,user.password);
         if(isValidPassword){
-            const token = jwt.sign({id:user._id},process.env.JWT_SECRET)
-            res.json({success:true,message:"User logged in Successfully",token})
+            const token = jwt.sign({id:user._id,role:user.role},process.env.JWT_SECRET)
+            res.json({success:true,message:"User logged in Successfully",token,role:user.role})
         }else{
-            return res.json({success:false,message:error.message})
+            return res.json({success:false,message: "Invalid password" })
         }   
         
     } catch (error) {

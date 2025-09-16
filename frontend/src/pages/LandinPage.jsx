@@ -11,6 +11,13 @@ export default function LandingPage() {
           Smart Vendor Payment{" "}
           <span className="text-indigo-600">Automation Simulator</span>
         </h1>
+        <div className="flex justify-center mb-6">
+          <img
+            src="/logo1.png"
+            alt="Logo"
+            className="w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 max-w-full h-auto"
+          />
+        </div>
 
         {/* Subtext */}
         <p className="text-gray-700 text-lg mb-10 max-w-2xl mx-auto">
@@ -25,7 +32,7 @@ export default function LandingPage() {
         {/* Call to action */}
         <button
           onClick={() => navigate("/login")}
-          className="px-8 py-4 bg-indigo-600 text-white font-semibold rounded-xl shadow-lg hover:bg-indigo-700 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-all duration-300"
+          className="px-8 py-3 bg-indigo-600 text-white font-semibold rounded-xl shadow-lg hover:bg-indigo-700 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-all duration-300"
         >
           🚀 Login to Dashboard
         </button>

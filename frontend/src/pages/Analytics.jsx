@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { FileText } from "lucide-react";
+import { FileText} from "lucide-react";
 import axios from "axios";
 import FileUpload from "../components/FileUpload";
 import StatsCards from "../components/StatsCards";
@@ -87,8 +87,12 @@ const Analytics = () => {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
+      if (updateResponse.data.success){
 
-      toast.success(updateResponse.data.message);
+        toast.success(updateResponse.data.message);
+      }else{
+        toast.error(updateResponse.data.message);
+      }
       await fetchInvoices();
     } catch (error) {
       toast.error("Update failed: " + error.message);
@@ -139,9 +143,12 @@ const Analytics = () => {
             </p>
           </div>
           <div className="flex justify-center md:justify-end items-center gap-4">
+           
+            <button className={`${localStorage.getItem("role") !== "manager" && "hidden"} px-3 py-1 bg-black text-white text-sm font-medium rounded-full shadow hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2  transition duration-300`}>
+              Manager</button>
             <Link to="/dashboard">
               <button className="px-5 py-2 bg-indigo-600 text-white font-medium rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-300">
-                Analytics Dashboard
+                 Dashboard
               </button>
             </Link>
 
@@ -151,6 +158,7 @@ const Analytics = () => {
             >
               Logout
             </button>
+
           </div>
         </div>
 

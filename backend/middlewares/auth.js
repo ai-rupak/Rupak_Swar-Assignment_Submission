@@ -14,4 +14,7 @@ const authUser = async (req,res,next)=>{
         res.status(401).json({message:"Not authorized , Login first"});
     }
 }
+
+
+
 export default authUser;

@@ -77,12 +77,15 @@ const InvoiceTable = ({ invoices, onUpdateStatus }) => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                   {invoice.vendor}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                <td className={`px-6 py-4 whitespace-nowrap text-sm text-gray-900 ${invoice.amount > 100000 ? "text-red-700 font-bold" : ""}` }>
                   ₹{parseFloat(invoice.amount).toFixed(2)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {new Date(invoice.date).toLocaleDateString()}
+                  {invoice.date ? new Date(invoice.date).toLocaleDateString("en-GB") : "N/A"}
                 </td>
+
+
+
                 <td className="px-6 py-4 whitespace-nowrap">
                   {getStatusBadge(invoice.status)}
                 </td>
